@@ -9,3 +9,10 @@
 ##### Daha sonra Telegram hesap kimliğinizi bulmamız gerekir.
 ##### Bota gidin ve başlata tıklayın. https://telegram.me/getmyid_bot
 ##### Şimdi sadece küçük bir komut dosyası oluşturmamız gerekir.
+
+```
+mkdir $HOME/Haqq_alert_TG
+```
+```
+sudo apt install nano
+nano $HOME/Haqq_alert_TG/Haqq_alert_TG.sh

@@ -52,7 +52,7 @@ echo 'LAST_POWER="'"$VOTING_POWER"'"' >> $LOG_FILE
 
 curl -s "$NODE_RPC/status"> /dev/null
 if [[ $? -ne 0 ]]; then
-    MSG="$ip düğümü durduruldu "
+    MSG="$ip Düğümü durduruldu."
     MSG="$NODE_NAME $MSG"
     SEND=$(curl -s -X POST -H "Content-Type:multipart/form-data" "https://api.telegram.org/bot$TG_BOT/sendMessage?chat_id=$TG_ID&text=$MSG"); exit 1
 fi
@@ -63,24 +63,24 @@ if [[ $LAST_POWER -ne $VOTING_POWER ]]; then
     if [[ $DIFF -gt 0 ]]; then
         DIFF="%2B$DIFF"
     fi
-    MSG="$ip oylama gücü değişti  $DIFF%0A($LAST_POWER -> $VOTING_POWER)"
+    MSG="$ip Oylama gücü değişti.  $DIFF%0A($LAST_POWER -> $VOTING_POWER)"
 fi
 
 if [[ $LAST_BLOCK -ge $LATEST_BLOCK ]]; then
 
-    MSG="$ip blokta takıldı >> $LATEST_BLOCK"
+    MSG="$ip Blokta takıldı. >> $LATEST_BLOCK"
 fi
 
 if [[ $VOTING_POWER -lt 1 ]]; then
-    MSG="$ip  doğrulayıcı etkin değil."
+    MSG="$ip Doğrulayıcı etkin değil."
 fi
 
 if [[ $CATCHING_UP = "true" ]]; then
-    MSG="$ip düğüm senkronizasyon sürecinde . $LATEST_BLOCK -> $REAL_BLOCK"
+    MSG="$ip Düğüm senkronizasyon sürecinde. $LATEST_BLOCK -> $REAL_BLOCK"
 fi
 
 if [[ $REAL_BLOCK -eq 0 ]]; then
-    MSG="$ip bağlantı başarısız oldu $SIDE_RPC"
+    MSG="$ip Bağlantı başarısız oldu. $SIDE_RPC"
 fi
 
 if [[ $MSG != "" ]]; then

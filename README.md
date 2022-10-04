@@ -18,7 +18,7 @@ sudo apt install nano
 nano $HOME/Haqq_alert_TG/Haqq_alert_TG.sh
 ```
 
-##### Verilerinizi komut dosyasında değiştirin. TG_BOT=(Telegram bot API) and TG_ID=(Telegram ID)
+##### Verilerinizi komut dosyasında değiştirin. TG_BOT=(Telegram bot API) ve TG_ID=(Telegram ID)
 Ayrıca doğrulayıcınızın adını da belirtin NODE_NAME="". Gerekirse düğümünüzün bağlantı noktalarını değiştirin.
 
 ```
@@ -52,7 +52,7 @@ echo 'LAST_POWER="'"$VOTING_POWER"'"' >> $LOG_FILE
 
 curl -s "$NODE_RPC/status"> /dev/null
 if [[ $? -ne 0 ]]; then
-    MSG="$ip  узел остановлен "
+    MSG="$ip düğümü durduruldu "
     MSG="$NODE_NAME $MSG"
     SEND=$(curl -s -X POST -H "Content-Type:multipart/form-data" "https://api.telegram.org/bot$TG_BOT/sendMessage?chat_id=$TG_ID&text=$MSG"); exit 1
 fi
@@ -63,24 +63,24 @@ if [[ $LAST_POWER -ne $VOTING_POWER ]]; then
     if [[ $DIFF -gt 0 ]]; then
         DIFF="%2B$DIFF"
     fi
-    MSG="$ip  размер стейка валидатора изменился  $DIFF%0A($LAST_POWER -> $VOTING_POWER)"
+    MSG="$ip oylama gücü değişti  $DIFF%0A($LAST_POWER -> $VOTING_POWER)"
 fi
 
 if [[ $LAST_BLOCK -ge $LATEST_BLOCK ]]; then
 
-    MSG="$ip узел застрял в блоке номер >> $LATEST_BLOCK"
+    MSG="$ip blokta takıldı >> $LATEST_BLOCK"
 fi
 
 if [[ $VOTING_POWER -lt 1 ]]; then
-    MSG="$ip  валидатор не активен ( выпал из актив сета) или находится в тюрьме."
+    MSG="$ip  doğrulayıcı etkin değil."
 fi
 
 if [[ $CATCHING_UP = "true" ]]; then
-    MSG="$ip узел находится в процессе синхронизации . $LATEST_BLOCK -> $REAL_BLOCK"
+    MSG="$ip düğüm senkronizasyon sürecinde . $LATEST_BLOCK -> $REAL_BLOCK"
 fi
 
 if [[ $REAL_BLOCK -eq 0 ]]; then
-    MSG="$ip пропало соединения с рпц нодой $SIDE_RPC"
+    MSG="$ip bağlantı başarısız oldu $SIDE_RPC"
 fi
 
 if [[ $MSG != "" ]]; then

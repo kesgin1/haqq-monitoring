@@ -19,7 +19,7 @@ nano $HOME/Haqq_alert_TG/Haqq_alert_TG.sh
 ```
 
 ##### Verilerinizi komut dosyasında değiştirin. TG_BOT=(Telegram bot API) ve TG_ID=(Telegram ID)
-Ayrıca doğrulayıcınızın adını da belirtin NODE_NAME="". Gerekirse düğümünüzün bağlantı noktalarını değiştirin.
+Ayrıca doğrulayıcınızın adını da belirtin. NODE_NAME="". Gerekirse düğümünüzün bağlantı noktalarını değiştirin.
 
 ```
 #!/bin/bash
@@ -104,3 +104,4 @@ sudo chmod 744 $HOME/Haqq_alert_TG/Haqq_alert_TG.sh
   ```
  */5 * * * *  /bin/bash $HOME/Haqq_alert_TG/Haqq_alert_TG.sh
   ```
+##### İşlemler bitmiştir.
